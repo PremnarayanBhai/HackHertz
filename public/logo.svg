@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Diagonal division line from (45, 325) to (235, 175) -->
+    <clipPath id="topRightTriangle">
+      <polygon points="45,325 45,170 235,170 235,175 45,325" />
+    </clipPath>
+    <clipPath id="bottomLeftTriangle">
+      <polygon points="45,325 235,175 235,330 45,330 45,325" />
+    </clipPath>
+    <style>
+      .hh-text-bold { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 800; }
+      .hh-text-wide { font-family: 'Orbitron', 'Plus Jakarta Sans', -apple-system, sans-serif; font-weight: 900; }
+    </style>
+  </defs>
+
+  <!-- Circular Badge Background -->
+  <circle cx="250" cy="250" r="244" fill="#000000" stroke="#222222" stroke-width="2"/>
+
+  <!-- Left Box Outer Border -->
+  <rect x="45" y="170" width="190" height="155" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="miter" />
+
+  <!-- Upper-Right Half (White Background + Black HH) -->
+  <g clip-path="url(#topRightTriangle)">
+    <!-- White filled background in upper-right -->
+    <rect x="45" y="170" width="190" height="155" fill="#FFFFFF" />
+    
+    <!-- Black H #1 -->
+    <rect x="68" y="185" width="22" height="125" fill="#000000" />
+    <rect x="110" y="185" width="22" height="125" fill="#000000" />
+    <rect x="90" y="235" width="20" height="25" fill="#000000" />
+    
+    <!-- Black H #2 -->
+    <rect x="148" y="185" width="22" height="125" fill="#000000" />
+    <rect x="190" y="185" width="22" height="125" fill="#000000" />
+    <rect x="170" y="235" width="20" height="25" fill="#000000" />
+  </g>
+
+  <!-- Lower-Left Half (Black Background + White HH) -->
+  <g clip-path="url(#bottomLeftTriangle)">
+    <!-- Black filled background in lower-left -->
+    <rect x="45" y="170" width="190" height="155" fill="#000000" />
+    
+    <!-- White H #1 -->
+    <rect x="68" y="185" width="22" height="125" fill="#FFFFFF" />
+    <rect x="110" y="185" width="22" height="125" fill="#FFFFFF" />
+    <rect x="90" y="235" width="20" height="25" fill="#FFFFFF" />
+    
+    <!-- White H #2 -->
+    <rect x="148" y="185" width="22" height="125" fill="#FFFFFF" />
+    <rect x="190" y="185" width="22" height="125" fill="#FFFFFF" />
+    <rect x="170" y="235" width="20" height="25" fill="#FFFFFF" />
+  </g>
+
+  <!-- Clean diagonal dividing line -->
+  <line x1="45" y1="325" x2="235" y2="175" stroke="#FFFFFF" stroke-width="4" stroke-linecap="square" />
+
+  <!-- Right Typography -->
+  <!-- "Hack" -->
+  <text x="252" y="236" fill="#FFFFFF" class="hh-text-bold" font-size="64" letter-spacing="-1.5">Hack</text>
+
+  <!-- "Hertz." -->
+  <text x="252" y="294" fill="#FFFFFF" class="hh-text-bold" font-size="64" letter-spacing="-1.5">Hertz.</text>
+
+  <!-- "2.0" -->
+  <text x="254" y="326" fill="#FFFFFF" class="hh-text-wide" font-size="25" letter-spacing="4">2.0</text>
+</svg>
