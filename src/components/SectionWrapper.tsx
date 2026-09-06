@@ -153,7 +153,7 @@ export const SectionWrapper: React.FC<SectionWrapperProps> = ({
   children,
   delay = 0,
   stageTag,
-  amount = 0.1,
+  amount = 0.05,
   accent = 'yellow',
   bgVariant = 'abyss',
   animVariant = 'lift',
@@ -168,7 +168,7 @@ export const SectionWrapper: React.FC<SectionWrapperProps> = ({
       id={id}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount }}
+      viewport={{ once: true, amount: 0.05, margin: '200px 0px 200px 0px' }}
       custom={delay}
       variants={selectedVariant}
       className={`relative overflow-hidden transform-gpu transition-colors duration-1000 ${currentBg} ${className}`}

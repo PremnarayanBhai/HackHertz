@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart, Instagram, MessageCircle, ArrowUp, Phone, Mail, MapPin } from 'lucide-react';
+import { Heart, Instagram, MessageCircle, ArrowUp, Phone, Mail, MapPin, Gamepad2 } from 'lucide-react';
 import { hackathonInfo } from '../data/hackathonData';
 import { soundManager } from '../utils/sound';
 import { HackHertzLogo } from './HackHertzLogo';
@@ -8,9 +8,10 @@ import { SSITLogo } from './SSITLogo';
 
 interface FooterProps {
   onOpenRegister: () => void;
+  onReplayBoot?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenRegister }) => {
+export const Footer: React.FC<FooterProps> = ({ onOpenRegister, onReplayBoot }) => {
   const scrollToTop = () => {
     soundManager.playClick();
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -183,14 +184,28 @@ export const Footer: React.FC<FooterProps> = ({ onOpenRegister }) => {
                 href="#organization"
                 onClick={() => soundManager.playClick()}
                 id="footer-get-in-touch-btn"
-                className="px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs font-pixel text-slate-300 hover:text-pink-400 hover:border-pink-500/60 transition-colors flex items-center gap-2"
+                className="px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs font-pixel text-slate-300 hover:text-pink-400 hover:border-pink-500/60 transition-colors flex items-center gap-2 cursor-pointer"
               >
                 <Phone className="w-3.5 h-3.5 text-pink-400" /> CONTACT CREW
               </a>
+              {onReplayBoot && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    soundManager.playCoin();
+                    onReplayBoot();
+                  }}
+                  id="footer-replay-boot-btn"
+                  className="px-4 py-2 rounded-xl bg-yellow-400/10 border border-yellow-400/40 text-xs font-pixel text-yellow-400 hover:bg-yellow-400/20 transition-colors flex items-center gap-2 cursor-pointer"
+                  title="Experience the retro arcade power-on sequence again"
+                >
+                  <Gamepad2 className="w-4 h-4 text-yellow-400" /> REBOOT ARCADE
+                </button>
+              )}
               <button
                 onClick={scrollToTop}
                 id="footer-back-to-top-btn"
-                className="px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs font-pixel text-slate-300 hover:text-yellow-400 hover:border-yellow-400 transition-colors flex items-center gap-2"
+                className="px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs font-pixel text-slate-300 hover:text-yellow-400 hover:border-yellow-400 transition-colors flex items-center gap-2 cursor-pointer"
               >
                 <ArrowUp className="w-4 h-4" /> BACK TO TOP
               </button>

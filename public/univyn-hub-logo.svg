@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" width="100%" height="100%">
+  <!-- Light Lilac Background Outer Circle -->
+  <circle cx="160" cy="160" r="150" fill="#D8CEEC"/>
+  
+  <!-- White Inner Disc with Dark Navy Border -->
+  <circle cx="160" cy="160" r="144" fill="#FFFFFF" stroke="#16083C" stroke-width="6"/>
+
+  <!-- Planet with Ring Motif -->
+  <g transform="translate(160, 110)">
+    <!-- Orbiting Stars -->
+    <!-- Star top right -->
+    <path d="M 38 -42 L 40 -35 L 47 -33 L 42 -28 L 43 -21 L 38 -25 L 33 -21 L 34 -28 L 29 -33 L 36 -35 Z" fill="#16083C"/>
+    <!-- Star top left -->
+    <path d="M -50 -32 L -48 -26 L -42 -24 L -46 -20 L -45 -14 L -50 -17 L -55 -14 L -54 -20 L -58 -24 L -52 -26 Z" fill="#16083C"/>
+    <!-- Star left -->
+    <path d="M -72 -10 L -70 -5 L -65 -3 L -69 0 L -68 5 L -72 2 L -76 5 L -75 0 L -79 -3 L -74 -5 Z" fill="#16083C"/>
+    <!-- Star right -->
+    <path d="M 68 -2 L 70 3 L 75 5 L 71 8 L 72 13 L 68 10 L 64 13 L 65 8 L 61 5 L 66 3 Z" fill="#16083C"/>
+    <!-- Star bottom right -->
+    <path d="M 52 24 L 54 28 L 58 30 L 55 33 L 56 37 L 52 35 L 48 37 L 49 33 L 46 30 L 50 28 Z" fill="#16083C"/>
+    <!-- Star bottom left -->
+    <path d="M -54 26 L -52 30 L -48 32 L -51 35 L -50 39 L -54 37 L -58 39 L -57 35 L -60 32 L -56 30 Z" fill="#16083C"/>
+
+    <!-- Central Purple Planet Disc -->
+    <circle cx="0" cy="0" r="42" fill="none" stroke="#7C3AED" stroke-width="12"/>
+    <ellipse cx="6" cy="-4" rx="28" ry="18" fill="#9333EA"/>
+
+    <!-- Tilted Elliptical Ring -->
+    <path d="M -65 14 C -68 -10 -40 -32 10 -32 C 60 -32 75 0 52 24 C 30 46 -30 38 -65 14 Z" fill="none" stroke="#16083C" stroke-width="13" stroke-linecap="round"/>
+    
+    <!-- White Highlight Ring Arch -->
+    <path d="M -46 -4 C -30 -16 0 -18 30 -6" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+  </g>
+
+  <!-- UNIVYN HUB Text -->
+  <text x="160" y="216" font-family="'Segoe UI', Roboto, 'Arial Black', sans-serif" font-weight="900" font-size="34" fill="#16083C" text-anchor="middle" letter-spacing="1">
+    UNIVYN HUB
+  </text>
+
+  <!-- EDUCATIONAL COMMUNITY PLATFORM Text -->
+  <text x="160" y="238" font-family="'Segoe UI', Roboto, Arial, sans-serif" font-weight="700" font-size="12.5" fill="#334155" text-anchor="middle" letter-spacing="1.2">
+    EDUCATIONAL COMMUNITY PLATFORM
+  </text>
+</svg>

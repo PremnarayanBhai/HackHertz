@@ -60,9 +60,9 @@ export interface ProblemStatement {
   title: string;
   domainId: string;
   domainName: string;
-  difficulty: 'Beginner' | 'Intermediate' | 'Hard' | 'Extreme';
+  difficulty: 'Easy' | 'Moderate' | 'Hard' | 'Beginner' | 'Intermediate' | 'Extreme' | 'Open Theme';
   description: string;
-  expectedSolution: string;
+  expectedSolution?: string;
   suggestedTech: string[];
   sponsor?: string;
   pdfUrl?: string;
@@ -192,5 +192,92 @@ export interface RegistrationFormData {
 export interface RegistrationRecord extends RegistrationFormData {
   registrationId: string;
   submittedAt: string;
+}
+
+export interface CertificateRecord {
+  certificateId: string; // e.g. "HH26-CERT-8F3A29"
+  recipientName: string;
+  recipientEmail: string;
+  issuedAt: string; // ISO date
+  issueDateFormatted: string;
+  domain: string;
+  category: 'Participation' | 'Winner' | 'Runner Up' | 'Special Mention' | 'Mentor';
+  teamName?: string;
+  collegeName?: string;
+  verificationHash: string;
+}
+
+export interface AuthorizedParticipant {
+  email: string;
+  name?: string;
+  teamName?: string;
+  collegeName?: string;
+  domain?: string;
+  category?: 'Participation' | 'Winner' | 'Runner Up' | 'Special Mention' | 'Mentor';
+  addedAt?: string;
+}
+
+export interface TeamMember {
+  name: string;
+  email: string;
+  role: 'Lead' | 'Member';
+  phone?: string;
+  collegeName?: string;
+}
+
+export interface TeamRecord {
+  id?: string;
+  teamId: string; // e.g. "HH26-TEAM-001"
+  teamNumber: number; // 1 - 100
+  teamName: string;
+  domainId: string;
+  domainName: string;
+  collegeName: string;
+  accessCode: string; // e.g. "HH26-AIML-4921"
+  teamLead: {
+    name: string;
+    email: string;
+    phone?: string;
+  };
+  members: TeamMember[];
+  hasUnlocked: boolean;
+  unlockedAt?: string | null;
+  createdAt: string;
+  updatedAt?: string;
+}
+
+export interface SystemSettingsRecord {
+  isProblemStatementsLive: boolean;
+  liveRevealDate: string;
+  announcement: string;
+  lastSyncedAt?: string;
+  totalTeams: number;
+  totalParticipants: number;
+}
+
+export interface ProblemStatementDetailed extends ProblemStatement {
+  background?: string;
+  keyRequirements?: string[];
+  challenges?: string[];
+  expectedOutcome?: string;
+  scopeSafetyNote?: string;
+  workflowSteps?: string[];
+  visitorCapabilities?: string[];
+  adminCapabilities?: string[];
+  expectedDeliverables?: string[];
+  evaluationCriteria?: string[];
+  mentorSupport?: string;
+}
+
+export interface EvaluationCriterion {
+  criteria: string;
+  weight: string;
+  description: string;
+}
+
+export interface CertificateVerificationResult {
+  isValid: boolean;
+  certificate?: CertificateRecord;
+  message?: string;
 }
 

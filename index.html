@@ -17,7 +17,89 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Press+Start+2P&family=VT323&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
   </head>
   <body class="bg-[#050714] text-slate-100 antialiased selection:bg-yellow-400 selection:text-slate-950 min-h-screen overflow-x-hidden">
-    <div id="root"></div>
+    <div id="root">
+      <!-- Instant Zero-Delay Retro Arcade Bootloader (Shown instantly before React hydrates) -->
+      <div id="arcade-preloader" style="min-height: 100vh; background-color: #030612; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; font-family: monospace; color: #f1f5f9; text-align: center; position: relative; overflow: hidden; user-select: none;">
+        <style>
+          @keyframes pac-eat {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(35deg); }
+            100% { transform: rotate(0deg); }
+          }
+          @keyframes neon-pulse {
+            0%, 100% { opacity: 0.85; filter: drop-shadow(0 0 15px rgba(250, 204, 21, 0.6)); }
+            50% { opacity: 1; filter: drop-shadow(0 0 25px rgba(250, 204, 21, 0.9)); }
+          }
+          @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(1000%); }
+          }
+          @keyframes dot-stream {
+            0% { background-position: 0 0; }
+            100% { background-position: -200px 0; }
+          }
+        </style>
+        
+        <!-- CRT Scanline overlay -->
+        <div style="position: absolute; inset: 0; pointer-events: none; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%); background-size: 100% 4px; opacity: 0.6;"></div>
+        
+        <!-- Terminal Cabinet Box -->
+        <div style="position: relative; max-width: 520px; width: 100%; background: rgba(9, 13, 36, 0.92); border: 2px solid #facc15; border-radius: 20px; padding: 32px 24px; box-shadow: 0 0 40px rgba(250, 204, 21, 0.25);">
+          
+          <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(250, 204, 21, 0.2); padding-bottom: 10px; margin-bottom: 20px; font-size: 11px; color: #facc15;">
+            <span>★ HACKHERTZ BIOS 2.06</span>
+            <span style="color: #22d3ee;">SYS: ONLINE</span>
+          </div>
+
+          <div style="font-size: 26px; font-weight: 900; letter-spacing: 2px; color: #facc15; animation: neon-pulse 1.5s infinite; margin-bottom: 6px;">
+            HACKHERTZ 2026
+          </div>
+          <div style="font-size: 12px; color: #94a3b8; margin-bottom: 24px;">
+            INITIALIZING 30-HOUR RETRO ARCADE ARENA...
+          </div>
+
+          <!-- Pacman Track Loader -->
+          <div style="position: relative; height: 36px; background: #050714; border: 1px solid #1e293b; border-radius: 12px; overflow: hidden; display: flex; align-items: center; padding: 0 14px; margin-bottom: 18px;">
+            <!-- Animated neon dots track -->
+            <div style="position: absolute; left: 0; right: 0; height: 4px; background: repeating-linear-gradient(90deg, #22d3ee 0px, #22d3ee 8px, transparent 8px, transparent 24px); animation: dot-stream 2s linear infinite; opacity: 0.8;"></div>
+            
+            <!-- Pacman Icon -->
+            <div style="position: relative; z-index: 2; width: 22px; height: 22px; border-radius: 50%; background: #facc15; box-shadow: 0 0 10px #facc15; display: flex; align-items: center; justify-content: center;">
+              <div style="width: 4px; height: 4px; border-radius: 50%; background: #050714; margin-bottom: 8px; margin-left: 6px;"></div>
+            </div>
+          </div>
+
+          <div style="font-size: 11px; color: #cbd5e1; display: flex; justify-content: space-between; align-items: center;">
+            <span style="color: #4ade80;">● Allocating Game Shaders...</span>
+            <span style="color: #facc15;">INSERT COIN</span>
+          </div>
+
+          <!-- Automated Delayed Recovery Fallback (Triggers after 4.5s if network is slow) -->
+          <div id="arcade-fallback-ctrls" style="display: none; margin-top: 24px; padding-top: 16px; border-top: 1px dashed rgba(239, 68, 68, 0.4);">
+            <div style="font-size: 11px; color: #f87171; margin-bottom: 10px;">
+              Connection delayed or container waking up?
+            </div>
+            <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+              <button onclick="window.location.reload(true)" style="background: #eab308; color: #020617; border: none; border-radius: 8px; padding: 8px 14px; font-size: 11px; font-weight: bold; cursor: pointer;">
+                ↻ FORCE RELOAD
+              </button>
+              <button onclick="try { localStorage.clear(); sessionStorage.clear(); } catch(e){} window.location.reload(true)" style="background: #1e293b; color: #f8fafc; border: 1px solid #475569; border-radius: 8px; padding: 8px 14px; font-size: 11px; font-weight: bold; cursor: pointer;">
+                CLEAR CACHE & REBOOT
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <script>
+          // If React hasn't replaced this after 4.5 seconds, display the manual reload triggers
+          setTimeout(function() {
+            var fb = document.getElementById('arcade-fallback-ctrls');
+            if (fb) fb.style.display = 'block';
+          }, 4500);
+        </script>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

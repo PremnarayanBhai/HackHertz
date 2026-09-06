@@ -126,6 +126,77 @@ class SoundEffectsManager {
     }
   }
 
+  // Celebrity VIP Fanfare Audio Synthesizer
+  public playCelebrityUnlock() {
+    if (this.isMuted) return;
+    this.initContext();
+    if (!this.ctx) return;
+
+    try {
+      const now = this.ctx.currentTime;
+      // Majestic ascending brass fanfare: C4, G4, C5, E5, G5, C6 with layered harmonics
+      const fanfareNotes = [
+        { f: 261.63, delay: 0.0, dur: 0.15 }, // C4
+        { f: 392.00, delay: 0.14, dur: 0.15 }, // G4
+        { f: 523.25, delay: 0.28, dur: 0.20 }, // C5
+        { f: 659.25, delay: 0.44, dur: 0.20 }, // E5
+        { f: 783.99, delay: 0.60, dur: 0.25 }, // G5
+        { f: 1046.50, delay: 0.80, dur: 0.60 }, // High C6 triumphant hold
+      ];
+
+      fanfareNotes.forEach((n) => {
+        // Main synth voice
+        const osc = this.ctx!.createOscillator();
+        const gain = this.ctx!.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(n.f, now + n.delay);
+
+        gain.gain.setValueAtTime(0.18, now + n.delay);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + n.delay + n.dur);
+
+        osc.connect(gain);
+        gain.connect(this.ctx!.destination);
+
+        osc.start(now + n.delay);
+        osc.stop(now + n.delay + n.dur);
+
+        // Sub/Octave harmony
+        const subOsc = this.ctx!.createOscillator();
+        const subGain = this.ctx!.createGain();
+        subOsc.type = 'sine';
+        subOsc.frequency.setValueAtTime(n.f * 1.5, now + n.delay);
+
+        subGain.gain.setValueAtTime(0.08, now + n.delay);
+        subGain.gain.exponentialRampToValueAtTime(0.001, now + n.delay + n.dur);
+
+        subOsc.connect(subGain);
+        subGain.connect(this.ctx!.destination);
+
+        subOsc.start(now + n.delay);
+        subOsc.stop(now + n.delay + n.dur);
+      });
+
+      // Shimmering chimes at the end
+      [1318.51, 1567.98, 2093.00, 2637.02].forEach((freq, idx) => {
+        const chime = this.ctx!.createOscillator();
+        const chimeGain = this.ctx!.createGain();
+        chime.type = 'sine';
+        chime.frequency.setValueAtTime(freq, now + 1.0 + idx * 0.07);
+
+        chimeGain.gain.setValueAtTime(0.09, now + 1.0 + idx * 0.07);
+        chimeGain.gain.exponentialRampToValueAtTime(0.001, now + 1.0 + idx * 0.07 + 0.3);
+
+        chime.connect(chimeGain);
+        chimeGain.connect(this.ctx!.destination);
+
+        chime.start(now + 1.0 + idx * 0.07);
+        chime.stop(now + 1.0 + idx * 0.07 + 0.3);
+      });
+    } catch {
+      // Ignore audio policy errors
+    }
+  }
+
   public playGameOver() {
     if (this.isMuted) return;
     this.initContext();
@@ -151,6 +222,33 @@ class SoundEffectsManager {
         osc.start(now + idx * 0.12);
         osc.stop(now + idx * 0.12 + 0.12);
       });
+    } catch {
+      // Ignore audio policy errors
+    }
+  }
+
+  public playError() {
+    if (this.isMuted) return;
+    this.initContext();
+    if (!this.ctx) return;
+
+    try {
+      const now = this.ctx.currentTime;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(220, now);
+      osc.frequency.setValueAtTime(160, now + 0.08);
+
+      gain.gain.setValueAtTime(0.15, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+
+      osc.start(now);
+      osc.stop(now + 0.25);
     } catch {
       // Ignore audio policy errors
     }

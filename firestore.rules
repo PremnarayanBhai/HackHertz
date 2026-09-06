@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // System Settings - Read accessible by public, updateable for event config
+    match /system_settings/{settingId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Teams - Team Leads can check access codes, admins can seed/import
+    match /teams/{teamId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Problem Statements - Domain specific specs
+    match /problem_statements/{problemId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Certificates - Publicly verifiable by ID / Email
+    match /certificates/{certificateId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Authorized Participants - Synced from team Google Sheet
+    match /authorized_participants/{participantId} {
+      allow read: if true;
+      allow write: if true;
+    }
+  }
+}

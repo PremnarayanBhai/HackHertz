@@ -17,11 +17,14 @@ import { ScrollProgressBar } from './components/ScrollProgressBar';
 import { FloatingArcadeCTA } from './components/FloatingArcadeCTA';
 import { ParticleTrailCanvas } from './components/ParticleTrailCanvas';
 import { ArcadeMusicPlayer } from './components/ArcadeMusicPlayer';
+import { ArcadeBootScreen } from './components/ArcadeBootScreen';
+import { NetworkSentinel } from './components/NetworkSentinel';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('hero');
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
   const [isSponsorModalOpen, setIsSponsorModalOpen] = useState(false);
+  const [showBootScreen, setShowBootScreen] = useState(false);
   
   // Prefill state for registration
   const [selectedDomain, setSelectedDomain] = useState<string>('');
@@ -44,6 +47,15 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#050714] text-slate-100 selection:bg-yellow-400 selection:text-slate-950">
       
+      {/* Interactive Arcade Machine Boot Sequence */}
+      <ArcadeBootScreen 
+        forceShow={showBootScreen} 
+        onBootComplete={() => setShowBootScreen(false)} 
+      />
+
+      {/* Network & Offline Telemetry Sentinel */}
+      <NetworkSentinel />
+
       {/* Desktop Mouse Particle Trail Canvas */}
       <ParticleTrailCanvas />
 
@@ -107,12 +119,15 @@ export default function App() {
         {/* Stage 10: FAQ */}
         <FAQ />
 
-        {/* Stage 11: Organization */}
+        {/* Stage 12: Organization */}
         <Contact />
       </main>
 
       {/* Footer */}
-      <Footer onOpenRegister={() => handleOpenRegister()} />
+      <Footer 
+        onOpenRegister={() => handleOpenRegister()} 
+        onReplayBoot={() => setShowBootScreen(true)}
+      />
 
       {/* Interactive Modals */}
       <SponsorModal

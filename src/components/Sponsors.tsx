@@ -1,10 +1,12 @@
 import React from 'react';
-import { ExternalLink, FileText, Award, Sparkles, Building2, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { ExternalLink, FileText, Award, Sparkles, Building2, ShieldCheck, CheckCircle2, Users } from 'lucide-react';
 import { soundManager } from '../utils/sound';
 import { ScrollReveal } from './ScrollReveal';
 import { SectionWrapper } from './SectionWrapper';
 import { SSIPLogo } from './SSIPLogo';
 import { SSITLogo } from './SSITLogo';
+import skillDevLogo from '../assets/images/regenerated_image_1787815842354.jpg';
+import univynHubLogo from '../assets/images/regenerated_image_1787816195561.jpg';
 
 interface SponsorsProps {
   onOpenSponsorModal: () => void;
@@ -21,6 +23,13 @@ export interface SponsorEntity {
   tagline?: string;
   description: string;
   accentColor: 'yellow' | 'cyan' | 'pink' | 'purple' | 'emerald';
+}
+
+export interface CommunityPartnerEntity {
+  id: string;
+  name: string;
+  logoUrl: string;
+  bg?: 'white' | 'dark';
 }
 
 export const Sponsors: React.FC<SponsorsProps> = ({ onOpenSponsorModal }) => {
@@ -47,6 +56,28 @@ export const Sponsors: React.FC<SponsorsProps> = ({ onOpenSponsorModal }) => {
       tagline: "We believe in quality",
       description: "",
       accentColor: "cyan"
+    }
+  ];
+
+  // Community Partners (Logos only)
+  const communityPartners: CommunityPartnerEntity[] = [
+    {
+      id: "cp-01",
+      name: "{CODERS} CLUB",
+      logoUrl: "/coders-club-logo.svg",
+      bg: "white"
+    },
+    {
+      id: "cp-03",
+      name: "Skill Development Club",
+      logoUrl: skillDevLogo,
+      bg: "white"
+    },
+    {
+      id: "cp-04",
+      name: "Univyn Hub",
+      logoUrl: univynHubLogo,
+      bg: "white"
     }
   ];
 
@@ -265,6 +296,48 @@ export const Sponsors: React.FC<SponsorsProps> = ({ onOpenSponsorModal }) => {
               </div>
             </div>
           </ScrollReveal>
+        </div>
+
+        {/* 3. Community Partners (Ecosystem & Tech Communities - Logos Only) */}
+        <div className="space-y-6 max-w-5xl mx-auto pt-4">
+          <ScrollReveal variant="fade-up">
+            <div className="text-center space-y-2">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-400/10 border border-cyan-400/30 text-xs font-pixel text-cyan-400 uppercase tracking-widest">
+                <Users className="w-4 h-4 text-cyan-400" />
+                <span>COMMUNITY PARTNERS</span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
+                ECOSYSTEM &amp; TECH COMMUNITIES
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto font-mono">
+                Empowered by leading student clubs, developer circles, and technology networks.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          {/* Centered Showcase - Each partner shown exactly once, zero duplicates */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto py-2">
+            {communityPartners.map((partner) => {
+              const isDark = partner.bg === 'dark';
+              return (
+                <div
+                  key={partner.id}
+                  onMouseEnter={() => soundManager.playHover()}
+                  className={`h-[110px] sm:h-[130px] rounded-2xl ${
+                    isDark
+                      ? 'bg-slate-950 border border-slate-800 hover:border-cyan-400/70 shadow-md'
+                      : 'bg-white border border-slate-200/80 hover:border-cyan-400 shadow-md'
+                  } p-4 flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(34,211,238,0.25)] cursor-pointer group/logo`}
+                >
+                  <img
+                    src={partner.logoUrl}
+                    alt={partner.name}
+                    className="max-h-full max-w-full object-contain filter drop-shadow-sm group-hover/logo:scale-105 transition-transform duration-300"
+                  />
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Become a Sponsor CTA Banner */}

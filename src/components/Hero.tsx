@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar, MapPin, Clock, ArrowRight, Play, Sparkles, Trophy, Users, ShieldCheck, Music, Disc3 } from 'lucide-react';
+import { Calendar, MapPin, Clock, ArrowRight, Play, Sparkles, Trophy, Users, Music, Disc3 } from 'lucide-react';
 import { hackathonInfo } from '../data/hackathonData';
 import { soundManager } from '../utils/sound';
 import { musicEngine } from '../utils/musicEngine';

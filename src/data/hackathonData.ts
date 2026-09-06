@@ -108,14 +108,14 @@ export const domains: Domain[] = [
   {
     id: "open-innovation",
     name: "Open Innovation",
-    shortDescription: "Unrestricted realm! Build anything groundbreaking that pushes the boundaries of modern software, AI, or web innovation.",
+    shortDescription: "Unrestricted realm! No pre-assigned problem statement — build any innovative software, AI model, or hardware prototype of your choice.",
     icon: "Gamepad2",
     color: "#22d3ee", // Bright Cyan
     bgGlow: "rgba(34, 211, 238, 0.15)",
-    exampleProblemsCount: 2,
+    exampleProblemsCount: 0,
     exampleProblems: [
-      "AI-Powered Retro Arcade Level Synthesizer & Physics Boss Arena",
-      "Decentralized Bandwidth & Compute Sharing Micro-Market"
+      "Open-Ended Track: No pre-assigned problem statement",
+      "Complete freedom to identify and solve any real-world problem"
     ]
   },
   {

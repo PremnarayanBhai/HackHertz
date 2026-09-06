@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" width="100%" height="100%">
+  <rect width="280" height="80" rx="12" fill="#FFFFFF"/>
+  <g transform="translate(18, 16)">
+    <!-- GeeksforGeeks Green Curved G logo -->
+    <path d="M 22 8 C 12 8 5 16 5 24 C 5 32 12 40 22 40 C 30 40 37 34 38 27 L 22 27 L 22 21 L 44 21 C 45 34 35 46 22 46 C 9 46 0 36 0 24 C 0 11 9 2 22 2 C 31 2 39 7 43 14 L 37 19 C 34 12 28 8 22 8 Z" fill="#2F8D46"/>
+  </g>
+  <g transform="translate(74, 30)">
+    <text font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="14" fill="#0F172A" letter-spacing="-0.2">GEEKSFORGEEKS</text>
+    <text y="18" font-family="'Segoe UI', Roboto, sans-serif" font-weight="600" font-size="10" fill="#2F8D46" letter-spacing="0.5">STUDENT CHAPTER</text>
+  </g>
+</svg>

@@ -1,0 +1,134 @@
+{
+  "entities": {
+    "Team": {
+      "title": "Team",
+      "description": "Represents a participating HackHertz 2026 team (100 teams total, 4 members each).",
+      "type": "object",
+      "properties": {
+        "teamId": { "type": "string", "description": "Unique Team ID e.g. HH26-TEAM-001" },
+        "teamNumber": { "type": "number", "description": "Sequential team number 1 to 100" },
+        "teamName": { "type": "string", "description": "Team name chosen by participants" },
+        "domainId": { "type": "string", "description": "Domain slug e.g. ai-ml, cybersecurity" },
+        "domainName": { "type": "string", "description": "Domain display name e.g. AI / ML" },
+        "collegeName": { "type": "string", "description": "Institution name" },
+        "accessCode": { "type": "string", "description": "Unique secret access code for Team Lead" },
+        "teamLead": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "email": { "type": "string" },
+            "phone": { "type": "string" }
+          }
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "email": { "type": "string" },
+              "role": { "type": "string" },
+              "collegeName": { "type": "string" },
+              "phone": { "type": "string" }
+            }
+          }
+        },
+        "hasUnlocked": { "type": "boolean" },
+        "unlockedAt": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["teamId", "teamName", "domainId", "domainName", "accessCode", "teamLead", "members"]
+    },
+    "ProblemStatement": {
+      "title": "ProblemStatement",
+      "description": "Domain challenge statement unlocked during hackathon.",
+      "type": "object",
+      "properties": {
+        "problemId": { "type": "string" },
+        "domainId": { "type": "string" },
+        "domainName": { "type": "string" },
+        "title": { "type": "string" },
+        "difficulty": { "type": "string" },
+        "description": { "type": "string" },
+        "expectedSolution": { "type": "string" },
+        "keyRequirements": { "type": "array", "items": { "type": "string" } },
+        "expectedDeliverables": { "type": "array", "items": { "type": "string" } },
+        "suggestedTech": { "type": "array", "items": { "type": "string" } },
+        "evaluationCriteria": { "type": "array", "items": { "type": "string" } },
+        "sponsor": { "type": "string" }
+      },
+      "required": ["problemId", "domainId", "domainName", "title", "description"]
+    },
+    "Certificate": {
+      "title": "Certificate",
+      "description": "Issued participant or winner certificate record.",
+      "type": "object",
+      "properties": {
+        "certificateId": { "type": "string" },
+        "recipientName": { "type": "string" },
+        "recipientEmail": { "type": "string" },
+        "issuedAt": { "type": "string" },
+        "issueDateFormatted": { "type": "string" },
+        "domain": { "type": "string" },
+        "category": { "type": "string" },
+        "teamName": { "type": "string" },
+        "collegeName": { "type": "string" },
+        "verificationHash": { "type": "string" }
+      },
+      "required": ["certificateId", "recipientName", "recipientEmail", "issuedAt", "verificationHash"]
+    },
+    "AuthorizedParticipant": {
+      "title": "AuthorizedParticipant",
+      "description": "Whitelist record synced from 100 teams Google Sheet.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "name": { "type": "string" },
+        "teamName": { "type": "string" },
+        "collegeName": { "type": "string" },
+        "domain": { "type": "string" },
+        "category": { "type": "string" },
+        "teamId": { "type": "string" },
+        "isLead": { "type": "boolean" },
+        "addedAt": { "type": "string" }
+      },
+      "required": ["email", "name"]
+    },
+    "SystemSetting": {
+      "title": "SystemSetting",
+      "description": "Global hackathon status and problem statements live switch.",
+      "type": "object",
+      "properties": {
+        "isProblemStatementsLive": { "type": "boolean" },
+        "liveRevealDate": { "type": "string" },
+        "announcement": { "type": "string" },
+        "lastSyncedAt": { "type": "string" },
+        "totalTeams": { "type": "number" },
+        "totalParticipants": { "type": "number" }
+      }
+    }
+  },
+  "firestore": {
+    "teams": {
+      "schema": "Team",
+      "description": "100 participating teams registry with unique team lead access codes."
+    },
+    "problem_statements": {
+      "schema": "ProblemStatement",
+      "description": "Domain problem statements for HackHertz 2026."
+    },
+    "certificates": {
+      "schema": "Certificate",
+      "description": "Officially issued verifiable certificates."
+    },
+    "authorized_participants": {
+      "schema": "AuthorizedParticipant",
+      "description": "Participant whitelist for certificate claim & authorization."
+    },
+    "system_settings": {
+      "schema": "SystemSetting",
+      "description": "Global event controls and lock status."
+    }
+  }
+}

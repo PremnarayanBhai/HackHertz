@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" width="100%" height="100%">
+  <rect width="280" height="80" rx="12" fill="#FFFFFF"/>
+  <g transform="translate(18, 18)">
+    <!-- AWS Cloud Logo Representation -->
+    <path d="M 12 28 C 6 28 2 24 2 18 C 2 13 6 9 11 9 C 13 4 18 1 24 1 C 31 1 36 6 37 12 C 41 13 44 17 44 21 C 44 26 40 28 35 28 Z" fill="#232F3E"/>
+    <path d="M 6 36 Q 23 44 40 36" stroke="#FF9900" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <path d="M 37 32 L 42 36 L 36 39" fill="#FF9900"/>
+  </g>
+  <g transform="translate(74, 30)">
+    <text font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="14" fill="#232F3E" letter-spacing="-0.2">AWS CLOUD CLUB</text>
+    <text y="18" font-family="'Segoe UI', Roboto, sans-serif" font-weight="600" font-size="10" fill="#FF9900" letter-spacing="0.5">STUDENT BUILDERS</text>
+  </g>
+</svg>

@@ -271,6 +271,35 @@ body.light-mode,
   color: #94a3b8 !important;
 }
 
+/* Infinite Logo Marquee Carousel */
+@keyframes infinite-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-infinite-carousel {
+  display: flex;
+  width: max-content;
+  animation: infinite-marquee 26s linear infinite;
+  will-change: transform;
+}
+
+.animate-infinite-carousel:hover {
+  animation-play-state: paused;
+}
+
+/* Carousel Fade Masks */
+.carousel-mask-edge {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+
+
 
 
 

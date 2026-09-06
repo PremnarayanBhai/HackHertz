@@ -96,8 +96,12 @@ export const ThemesDomains: React.FC<ThemesDomainsProps> = ({ onSelectDomain, on
                       >
                         <IconComp className="w-6 h-6" />
                       </div>
-                      <span className="font-pixel text-[10px] text-slate-400 bg-slate-950 px-2.5 py-1 rounded border border-slate-800">
-                        {dom.exampleProblemsCount} CHALLENGES
+                      <span className={`font-pixel text-[10px] px-2.5 py-1 rounded border ${
+                        dom.id === 'open-innovation'
+                          ? 'text-cyan-300 bg-cyan-950/80 border-cyan-800 shadow-[0_0_10px_rgba(34,211,238,0.2)]'
+                          : 'text-slate-400 bg-slate-950 border-slate-800'
+                      }`}>
+                        {dom.exampleProblemsCount > 0 ? `${dom.exampleProblemsCount} CHALLENGES` : 'OPEN THEME'}
                       </span>
                     </div>
 
@@ -114,7 +118,7 @@ export const ThemesDomains: React.FC<ThemesDomainsProps> = ({ onSelectDomain, on
                     {/* Example Challenges List */}
                     <div className="pt-2 space-y-2 border-t border-slate-800/80">
                       <span className="text-[11px] font-pixel text-slate-400 uppercase tracking-wider block">
-                        Sample Challenges:
+                        {dom.id === 'open-innovation' ? 'Track Guidance:' : 'Sample Challenges:'}
                       </span>
                       <ul className="space-y-1.5">
                         {dom.exampleProblems.map((prob, idx) => (

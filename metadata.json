@@ -1,6 +1,6 @@
 {
   "name": "Remix PAC-HACK 2026",
-  "description": "Intercollege Retro-Arcade Technical Hackathon Website",
+  "description": "Intercollege Retro-Arcade Technical Hackathon with Live Problem Statements, National Challenge Tracks & Schedule",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
