@@ -211,7 +211,7 @@ export async function validateTeamLeadAccessCode(
       id: `vip-${matchedDomain.code.toLowerCase()}`,
       teamId: `HH26-VIP-${matchedDomain.code}`,
       teamNumber: 1,
-      teamName: `VIP Delegate [${matchedDomain.name}]`,
+      teamName: `Track Innovator [${matchedDomain.name}]`,
       domainId: matchedDomain.id,
       domainName: matchedDomain.name,
       collegeName: "HackHertz 2026 Arena",

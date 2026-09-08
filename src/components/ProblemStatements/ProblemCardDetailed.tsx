@@ -34,21 +34,6 @@ export const ProblemCardDetailed: React.FC<ProblemCardDetailedProps> = ({
 }) => {
   const [expanded, setExpanded] = useState(false);
 
-  const getDifficultyColor = (diff: string) => {
-    switch (diff) {
-      case 'Beginner':
-        return 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40';
-      case 'Intermediate':
-        return 'bg-yellow-400/20 text-yellow-400 border-yellow-400/40';
-      case 'Hard':
-        return 'bg-rose-500/20 text-rose-400 border-rose-500/40';
-      case 'Extreme':
-        return 'bg-purple-500/20 text-purple-400 border-purple-500/40';
-      default:
-        return 'bg-cyan-500/20 text-cyan-400 border-cyan-500/40';
-    }
-  };
-
   return (
     <div className="p-6 rounded-3xl bg-slate-900/90 border border-slate-800 hover:border-yellow-400/50 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden space-y-4">
       
@@ -58,9 +43,6 @@ export const ProblemCardDetailed: React.FC<ProblemCardDetailedProps> = ({
           <div className="flex items-center gap-2">
             <span className="font-pixel text-[11px] px-2.5 py-1 rounded-md bg-yellow-400/10 text-yellow-400 border border-yellow-400/30">
               {problem.problemId}
-            </span>
-            <span className={`text-[10px] font-mono uppercase px-2 py-0.5 rounded border ${getDifficultyColor(problem.difficulty)}`}>
-              {problem.difficulty}
             </span>
           </div>
 

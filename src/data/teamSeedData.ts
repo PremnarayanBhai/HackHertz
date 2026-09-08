@@ -146,7 +146,7 @@ export { OPEN_INNOVATION_SPECIFICATION } from './officialProblemStatements';
 
 export const DEFAULT_SYSTEM_SETTINGS = {
   isProblemStatementsLive: false, // Goes live on hackathon kickoff or via Team Lead Access Code
-  liveRevealDate: "2026-09-08T11:00:00",
+  liveRevealDate: "2026-09-08T11:00:00+05:30",
   announcement: "⚡ Welcome to HackHertz 2026! Problem statements for all 100 teams will unlock live on Hackathon Day (Sep 08, 11:00 AM IST). Team leads can use their unique access code to unlock their domain track problem statement anytime.",
   totalTeams: 100,
   totalParticipants: 400

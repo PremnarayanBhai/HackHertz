@@ -37,7 +37,7 @@ export const ProblemStatements: React.FC<ProblemStatementsProps> = ({ onOpenRegi
   const [problems, setProblems] = useState<ProblemStatementDetailed[]>([]);
   const [systemSettings, setSystemSettings] = useState<SystemSettingsRecord>({
     isProblemStatementsLive: false,
-    liveRevealDate: '2026-09-08T11:00:00',
+    liveRevealDate: '2026-09-08T11:00:00+05:30',
     announcement: '⚡ Welcome to HackHertz 2026! Problem statements for all 100 teams unlock on Hackathon Day.',
     totalTeams: 100,
     totalParticipants: 400

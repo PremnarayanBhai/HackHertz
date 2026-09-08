@@ -37,6 +37,8 @@ export interface TimelineEvent {
   title: string;
   date: string;
   time?: string;
+  startTime?: string;
+  endTime?: string;
   description: string;
   status: 'completed' | 'current' | 'upcoming';
   icon: string;
@@ -60,7 +62,7 @@ export interface ProblemStatement {
   title: string;
   domainId: string;
   domainName: string;
-  difficulty: 'Easy' | 'Moderate' | 'Hard' | 'Beginner' | 'Intermediate' | 'Extreme' | 'Open Theme';
+  difficulty?: string;
   description: string;
   expectedSolution?: string;
   suggestedTech: string[];

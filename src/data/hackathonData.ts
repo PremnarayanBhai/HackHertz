@@ -29,8 +29,8 @@ export const hackathonInfo: HackathonInfo = {
   name: "HACKHERTZ 2.0",
   tagline: "High Score Innovation • 30 Hours • Ultimate Arcade Hackathon",
   date: "September 8 - 9, 2026",
-  startDate: "2026-09-08T11:00:00",
-  endDate: "2026-09-09T17:00:00",
+  startDate: "2026-09-08T11:00:00+05:30",
+  endDate: "2026-09-09T17:00:00+05:30",
   registrationDeadline: "August 31, 2026",
   venue: "Shree Swaminarayan Institute of Technology, Bhat, Gandhinagar",
   collegeName: "Shree Swaminarayan Institute of Technology (SSIT)",
@@ -295,8 +295,10 @@ export const timelineEvents: TimelineEvent[] = [
     title: "Phase 1 · Registration Starts",
     date: "15 Aug 2026",
     time: "12:00 AM IST",
-    description: "Registrations open. Form your team and prepare for the hackathon.",
-    status: "current",
+    startTime: "2026-08-15T00:00:00+05:30",
+    endTime: "2026-08-31T23:59:59+05:30",
+    description: "Registrations officially open. Teams form, choose preferred tracks, and register via the official portal.",
+    status: "completed",
     icon: "UserPlus",
     badge: "PHASE 01"
   },
@@ -307,8 +309,10 @@ export const timelineEvents: TimelineEvent[] = [
     title: "Phase 2 · Registration Ends",
     date: "31 Aug 2026",
     time: "11:59 PM IST",
-    description: "Final deadline for team registrations.",
-    status: "upcoming",
+    startTime: "2026-08-31T23:59:59+05:30",
+    endTime: "2026-09-01T23:59:59+05:30",
+    description: "Final deadline for team registrations and application submission across all college cohorts.",
+    status: "completed",
     icon: "Clock",
     badge: "PHASE 02"
   },
@@ -319,8 +323,10 @@ export const timelineEvents: TimelineEvent[] = [
     title: "Phase 3 · Confirmation Mail",
     date: "2 Sep 2026",
     time: "06:00 PM IST",
-    description: "Confirmed participants will receive a confirmation email and further instructions.",
-    status: "upcoming",
+    startTime: "2026-09-02T18:00:00+05:30",
+    endTime: "2026-09-03T23:59:59+05:30",
+    description: "Shortlisted teams receive official confirmation letters, security clearance details, and reporting guidelines.",
+    status: "completed",
     icon: "CheckCircle2",
     badge: "PHASE 03"
   },
@@ -331,8 +337,10 @@ export const timelineEvents: TimelineEvent[] = [
     title: "Phase 4 · Hackathon Starts",
     date: "8 Sep 2026",
     time: "11:00 AM IST",
-    description: "HACKHERTZ 2.0 officially begins with building, collaboration, mentoring, and innovation.",
-    status: "upcoming",
+    startTime: "2026-09-08T11:00:00+05:30",
+    endTime: "2026-09-09T17:00:00+05:30",
+    description: "HACKHERTZ 2.0 30-Hour In-Person Sprint kicks off! Problem statements unlock live and teams build nonstop with mentors.",
+    status: "current",
     icon: "Play",
     badge: "PHASE 04"
   },
@@ -340,15 +348,187 @@ export const timelineEvents: TimelineEvent[] = [
     id: "phase-5",
     phase: "Phase 5",
     phaseNumber: 5,
-    title: "Phase 5 · Hackathon Ends 🏆",
+    title: "Phase 5 · Hackathon Ends & Grand Valedictory 🏆",
     date: "9 Sep 2026",
     time: "05:00 PM IST",
-    description: "Final project submissions, presentations, judging, and winner announcement.",
+    startTime: "2026-09-09T17:00:00+05:30",
+    endTime: "2026-09-09T20:00:00+05:30",
+    description: "Final project submissions, jury pitching, valedictory ceremony, and grand winner awards celebration.",
     status: "upcoming",
     icon: "Trophy",
     badge: "PHASE 05"
   }
 ];
+
+export interface ScheduleSlot {
+  id: string;
+  time: string;
+  startTime: string;
+  endTime: string;
+  title: string;
+  subtitle: string;
+  tag: string;
+  tagColor: string;
+  icon: 'general' | 'ceremony' | 'hacking' | 'food' | 'mentorship' | 'judging';
+}
+
+export const eventDaySchedule: { day1: { date: string; title: string; slots: ScheduleSlot[] }; day2: { date: string; title: string; slots: ScheduleSlot[] } } = {
+  day1: {
+    date: "8 Sep 2026",
+    title: "Day 1 (Tuesday) · Inauguration & The Build Begins",
+    slots: [
+      {
+        id: "d1-s1",
+        time: "09:00 AM - 10:30 AM IST",
+        startTime: "2026-09-08T09:00:00+05:30",
+        endTime: "2026-09-08T10:30:00+05:30",
+        title: "Reporting & Security Check-in",
+        subtitle: "Participant verification, team ID badge collection, Wi-Fi configuration & official HackHertz survival kit handover.",
+        tag: "Check-in",
+        tagColor: "cyan",
+        icon: "general"
+      },
+      {
+        id: "d1-s2",
+        time: "10:30 AM - 11:00 AM IST",
+        startTime: "2026-09-08T10:30:00+05:30",
+        endTime: "2026-09-08T11:00:00+05:30",
+        title: "Inaugural Ceremony & Keynote Address",
+        subtitle: "Lighting of the lamp, welcome address by SSIT leadership & guidelines briefing by patron dignitaries.",
+        tag: "Ceremony",
+        tagColor: "purple",
+        icon: "ceremony"
+      },
+      {
+        id: "d1-s3",
+        time: "11:00 AM IST",
+        startTime: "2026-09-08T11:00:00+05:30",
+        endTime: "2026-09-08T13:30:00+05:30",
+        title: "🚀 Hacking Commences & Problem Statements Live Release",
+        subtitle: "The 30-hour countdown timer begins! Problem statements unlock on live team portals.",
+        tag: "Sprint Launch",
+        tagColor: "yellow",
+        icon: "hacking"
+      },
+      {
+        id: "d1-s4",
+        time: "01:30 PM - 02:30 PM IST",
+        startTime: "2026-09-08T13:30:00+05:30",
+        endTime: "2026-09-08T14:30:00+05:30",
+        title: "Lunch & Networking Break",
+        subtitle: "Nutritious lunch buffet provided in the college dining hall for all registered teams and mentors.",
+        tag: "Refreshment",
+        tagColor: "emerald",
+        icon: "food"
+      },
+      {
+        id: "d1-s5",
+        time: "04:30 PM - 06:30 PM IST",
+        startTime: "2026-09-08T16:30:00+05:30",
+        endTime: "2026-09-08T18:30:00+05:30",
+        title: "Mentorship Round 1: Architecture & Feasibility",
+        subtitle: "Domain experts visit teams to evaluate technical design, database schemas, and clarify challenge scopes.",
+        tag: "Mentorship",
+        tagColor: "pink",
+        icon: "mentorship"
+      },
+      {
+        id: "d1-s6",
+        time: "08:30 PM - 09:30 PM IST",
+        startTime: "2026-09-08T20:30:00+05:30",
+        endTime: "2026-09-08T21:30:00+05:30",
+        title: "Dinner & Arcade Gaming Break",
+        subtitle: "Hot dinner served, accompanied by quick retro mini-games in the recreation lounge to keep energy high.",
+        tag: "Dinner & Fun",
+        tagColor: "emerald",
+        icon: "food"
+      },
+      {
+        id: "d1-s7",
+        time: "11:30 PM - 12:30 AM IST",
+        startTime: "2026-09-08T23:30:00+05:30",
+        endTime: "2026-09-09T00:30:00+05:30",
+        title: "Midnight Coffee Fuel & Progress Check",
+        subtitle: "Late-night energy snacks, hot beverages & voluntary check-in with student coordinators.",
+        tag: "Midnight Fuel",
+        tagColor: "yellow",
+        icon: "food"
+      }
+    ]
+  },
+  day2: {
+    date: "9 Sep 2026",
+    title: "Day 2 (Wednesday) · Polish, Pitching & Grand Victory",
+    slots: [
+      {
+        id: "d2-s1",
+        time: "07:30 AM - 08:30 AM IST",
+        startTime: "2026-09-09T07:30:00+05:30",
+        endTime: "2026-09-09T08:30:00+05:30",
+        title: "Breakfast & Morning Refreshments",
+        subtitle: "Healthy morning breakfast & hot coffee to gear up teams for the final development sprint.",
+        tag: "Breakfast",
+        tagColor: "emerald",
+        icon: "food"
+      },
+      {
+        id: "d2-s2",
+        time: "10:00 AM - 12:00 PM IST",
+        startTime: "2026-09-09T10:00:00+05:30",
+        endTime: "2026-09-09T12:00:00+05:30",
+        title: "Mentorship Round 2: Demo Readiness & Edge Cases",
+        subtitle: "Final mentor review focusing on working MVP validation, UI responsiveness and presentation delivery.",
+        tag: "Mentorship",
+        tagColor: "pink",
+        icon: "mentorship"
+      },
+      {
+        id: "d2-s3",
+        time: "01:00 PM - 02:00 PM IST",
+        startTime: "2026-09-09T13:00:00+05:30",
+        endTime: "2026-09-09T14:00:00+05:30",
+        title: "Lunch Break",
+        subtitle: "Afternoon lunch in the campus dining area before code freeze.",
+        tag: "Lunch",
+        tagColor: "emerald",
+        icon: "food"
+      },
+      {
+        id: "d2-s4",
+        time: "02:30 PM IST",
+        startTime: "2026-09-09T14:30:00+05:30",
+        endTime: "2026-09-09T15:00:00+05:30",
+        title: "⚠️ Code Freeze & Portal Submission Deadline",
+        subtitle: "All git commits must be pushed and demonstration decks submitted. Submissions lock promptly at 02:30 PM.",
+        tag: "Code Freeze",
+        tagColor: "rose",
+        icon: "hacking"
+      },
+      {
+        id: "d2-s5",
+        time: "03:00 PM - 04:30 PM IST",
+        startTime: "2026-09-09T15:00:00+05:30",
+        endTime: "2026-09-09T16:30:00+05:30",
+        title: "Grand Jury Pitching & Evaluation Rounds",
+        subtitle: "Shortlisted teams present 5-minute live demos and 3-minute Q&A to the distinguished panel of judges.",
+        tag: "Judging",
+        tagColor: "purple",
+        icon: "judging"
+      },
+      {
+        id: "d2-s6",
+        time: "05:00 PM - 06:30 PM IST",
+        startTime: "2026-09-09T17:00:00+05:30",
+        endTime: "2026-09-09T18:30:00+05:30",
+        title: "🏆 Valedictory Ceremony & Prize Distribution",
+        subtitle: "Announcement of track winners, overall champions, trophy presentation, certificate handover and celebration.",
+        tag: "Grand Finale",
+        tagColor: "yellow",
+        icon: "ceremony"
+      }
+    ]
+  }
+};
 
 export const prizes: Prize[] = [
   {

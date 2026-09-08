@@ -21,7 +21,6 @@ import {
   Radio,
   Award,
   Zap,
-  Edit3,
   Share2
 } from 'lucide-react';
 import { TeamRecord, ProblemStatementDetailed } from '../../types';
@@ -55,12 +54,6 @@ export const TeamUnlockModal: React.FC<TeamUnlockModalProps> = ({
   const [copiedShare, setCopiedShare] = useState(false);
   const [selectedPs, setSelectedPs] = useState<ProblemStatementDetailed | null>(problemStatement || null);
   const [claimedPsId, setClaimedPsId] = useState<string | null>(null);
-  const [participantName, setParticipantName] = useState<string>(
-    team.teamLead?.name && team.teamLead.name !== 'Honored Innovator'
-      ? team.teamLead.name
-      : 'Celebrity Innovator'
-  );
-  const [isEditingName, setIsEditingName] = useState(false);
 
   useEffect(() => {
     if (problemStatement) {
@@ -103,8 +96,8 @@ export const TeamUnlockModal: React.FC<TeamUnlockModalProps> = ({
   const handleShareVip = () => {
     soundManager.playCoin();
     const shareText = `🌟 I just unlocked the live ${team.domainName} Problem Statement (${selectedPs?.problemId || 'OPEN INNOVATION'}) at HackHertz 2026!
-Delegate: ${participantName}
-Clearance: Level 5 Celebrity Innovator Access
+Team: ${team.teamName}
+Clearance: Level 5 Innovator Access
 Status: BROADCAST LIVE RIGHT NOW (T-00:00:00)
 Let the 30-hour hackathon begin! ⚡ #HackHertz2026 #Innovation`;
     navigator.clipboard.writeText(shareText);
@@ -116,10 +109,9 @@ Let the 30-hour hackathon begin! ⚡ #HackHertz2026 #Innovation`;
     soundManager.playCoin();
     const briefText = isOpenInnovation || !selectedPs
       ? `=== HACKHERTZ 2026 OPEN INNOVATION TRACK DOSSIER ===
-Delegate / Team: ${participantName} (${team.teamName})
+Team: ${team.teamName}
 Track: ${team.domainName}
 Access Code: ${team.accessCode}
-Clearance: VIP Celebrity Delegate
 Status: LIVE NOW (No Pre-Assigned Problem Statement - 100% Creative Autonomy)
 
 TRACK POLICY:
@@ -139,13 +131,11 @@ EVALUATION CRITERIA:
 - Prototype Completeness & Live Pitch (20%)
 =================================================`
       : `=== HACKHERTZ 2026 OFFICIAL PROBLEM STATEMENT ===
-Delegate / Team: ${participantName} (${team.teamName})
+Team: ${team.teamName}
 Track: ${team.domainName}
 Access Code: ${team.accessCode}
-Clearance: VIP Celebrity Delegate
 Problem ID: ${selectedPs.problemId}
 Title: ${selectedPs.title}
-Difficulty: ${selectedPs.difficulty}
 Status: BROADCAST LIVE NOW
 
 DESCRIPTION:
@@ -254,46 +244,11 @@ ${selectedPs.evaluationCriteria?.join('\n') || 'Standard HackHertz rubric'}
                   "{domainConfig?.celebrityQuote || 'The stage is yours. Engineer the future.'}"
                 </p>
 
-                {/* Personalized Innovator Delegate Name */}
-                <div className="flex flex-wrap items-center gap-3 pt-1 border-t border-yellow-400/20">
-                  <span className="text-[11px] font-mono uppercase text-slate-400">
-                    VIP Delegate Credential:
+                <div className="flex items-center justify-between pt-1 border-t border-yellow-400/20 text-[10px] font-mono">
+                  <span className="text-slate-400">
+                    Team: <span className="text-white font-bold">{team.teamName}</span>
                   </span>
-                  {isEditingName ? (
-                    <div className="flex items-center gap-2">
-                      <input
-                        type="text"
-                        value={participantName}
-                        onChange={(e) => setParticipantName(e.target.value)}
-                        placeholder="Enter your name or team name"
-                        className="px-2.5 py-1 rounded-lg bg-slate-950 border border-yellow-400 text-yellow-300 text-xs font-mono focus:outline-none"
-                      />
-                      <button
-                        onClick={() => {
-                          soundManager.playCoin();
-                          setIsEditingName(false);
-                        }}
-                        className="px-2 py-1 rounded-lg bg-yellow-400 text-slate-950 text-xs font-bold font-mono"
-                      >
-                        Save
-                      </button>
-                    </div>
-                  ) : (
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold font-orbitron text-white bg-slate-950/80 px-2.5 py-1 rounded-lg border border-slate-800">
-                        {participantName}
-                      </span>
-                      <button
-                        onClick={() => setIsEditingName(true)}
-                        className="p-1 rounded text-slate-400 hover:text-yellow-400 transition-colors"
-                        title="Edit Delegate Name"
-                      >
-                        <Edit3 className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  )}
-
-                  <span className="text-[10px] font-mono text-emerald-400 ml-auto flex items-center gap-1">
+                  <span className="text-emerald-400 flex items-center gap-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                     LIVE SATELLITE BROADCAST ACTIVATED
                   </span>
@@ -421,15 +376,6 @@ ${selectedPs.evaluationCriteria?.join('\n') || 'Standard HackHertz rubric'}
                       <div className="flex items-center justify-between gap-1 mb-1">
                         <span className="font-pixel text-[11px] text-yellow-400">
                           {ps.problemId}
-                        </span>
-                        <span className={`text-[9px] font-mono px-1.5 py-0.5 rounded uppercase ${
-                          (ps.difficulty as string) === 'Hard' || ps.difficulty === 'Extreme'
-                            ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30'
-                            : (ps.difficulty as string) === 'Medium' || ps.difficulty === 'Moderate' || ps.difficulty === 'Intermediate'
-                            ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
-                            : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
-                        }`}>
-                          {ps.difficulty}
                         </span>
                       </div>
                       <div className="font-bold text-xs truncate text-white">{ps.title}</div>
@@ -589,15 +535,6 @@ ${selectedPs.evaluationCriteria?.join('\n') || 'Standard HackHertz rubric'}
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="px-2.5 py-0.5 rounded bg-yellow-400/20 text-yellow-300 border border-yellow-400/40 text-xs font-pixel">
                       {selectedPs.problemId}
-                    </span>
-                    <span className={`px-2.5 py-0.5 rounded text-xs font-mono font-bold uppercase ${
-                      (selectedPs.difficulty as string) === 'Hard' || selectedPs.difficulty === 'Extreme'
-                        ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40'
-                        : (selectedPs.difficulty as string) === 'Medium' || selectedPs.difficulty === 'Moderate' || selectedPs.difficulty === 'Intermediate'
-                        ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
-                        : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
-                    }`}>
-                      {selectedPs.difficulty} Difficulty
                     </span>
                     {selectedPs.domainName && (
                       <span className="text-xs font-mono text-slate-400">

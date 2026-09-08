@@ -26,13 +26,6 @@ export const ProblemModal: React.FC<ProblemModalProps> = ({ problem, onClose, on
               <span className="text-xs text-cyan-400 font-mono uppercase bg-cyan-400/10 px-2 py-1 rounded">
                 {problem.domainName}
               </span>
-              <span className={`text-xs font-mono font-bold px-2 py-1 rounded ${
-                problem.difficulty === 'Beginner' ? 'bg-emerald-500/20 text-emerald-400' :
-                problem.difficulty === 'Intermediate' ? 'bg-yellow-500/20 text-yellow-400' :
-                problem.difficulty === 'Hard' ? 'bg-pink-500/20 text-pink-400' : 'bg-red-500/20 text-red-400'
-              }`}>
-                {problem.difficulty}
-              </span>
             </div>
 
             <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
